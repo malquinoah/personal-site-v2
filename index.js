@@ -13,6 +13,12 @@ const app = express();
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use((req, res, next) => {
+    console.log('Request URL:', req.originalUrl);
+    next();
+});
+
+
 app.get('/', (req, res) => { 
     res.sendFile(path.join(__dirname, 'index.html'));
 });
